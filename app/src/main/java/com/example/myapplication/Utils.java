@@ -8,6 +8,7 @@ import android.os.Message;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.example.myapplication.entity.BaseDataEntity;
 import com.example.myapplication.entity.OwerProjectEntity;
 import com.example.myapplication.entity.PromoteEntity;
 import com.example.myapplication.listview.ListInforAdapter;
@@ -62,13 +63,27 @@ public class Utils {
                 JSONObject jsonArray=new JSONObject(responseData);
                 String s22 = jsonArray.getJSONObject("data").getJSONArray("list").toString();
                 Gson gson=new Gson();
-                PromoteEntity[] userInfers = gson.fromJson(s22, PromoteEntity[].class);
+                BaseDataEntity[] userInfers = gson.fromJson(s22, PromoteEntity[].class);
+                if (userInfers==null||userInfers.length==0) return;
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
-                        ListInforAdapter listInforAdapter=new ListInforAdapter(context,userInfers);
-                        ListInfoActivity listInfoActivity= (ListInfoActivity) context;
-                        listInfoActivity.listView.setAdapter(listInforAdapter);
+                        switch (userInfers[0].getClassName()){
+                            case "PromoteEntity":
+                                ListInforAdapter listInforAdapter=new ListInforAdapter(context, (PromoteEntity[]) userInfers);
+                                ListInfoActivity listInfoActivity= (ListInfoActivity) context;
+                                listInfoActivity.listView.setAdapter(listInforAdapter);
+                                break;
+                            case "OwerProjectEntity":
+
+                                break;
+
+
+                            default:
+                                break;
+                        }
+
+
                     }
                 });
             }

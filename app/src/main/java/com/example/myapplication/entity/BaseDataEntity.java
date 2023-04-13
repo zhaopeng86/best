@@ -1,7 +1,6 @@
 package com.example.myapplication.entity;
 
-public class BaseDataEntity {
-
+public abstract class BaseDataEntity {
     private int id;
     private String uuid;
     private String add_time;
@@ -47,4 +46,6 @@ public class BaseDataEntity {
     public void setExt_data(String ext_data) {
         this.ext_data = ext_data;
     }
+
+    public abstract String getClassName();
 }

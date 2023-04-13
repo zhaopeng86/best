@@ -47,4 +47,9 @@ public class OwerProjectEntity extends BaseDataEntity{
     public void setProjecttype(String projecttype) {
         this.projecttype = projecttype;
     }
+
+    @Override
+    public String getClassName() {
+        return this.getClass().getName();
+    }
 }

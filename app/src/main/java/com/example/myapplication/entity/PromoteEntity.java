@@ -56,4 +56,9 @@ public class PromoteEntity extends BaseDataEntity{
     public void setAllowance(String allowance) {
         this.allowance = allowance;
     }
+
+    @Override
+    public String getClassName() {
+        return this.getClass().getName();
+    }
 }

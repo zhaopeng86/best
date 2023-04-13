@@ -19,4 +19,9 @@ public class UserInfor extends BaseDataEntity{
     public void setMobilenumber(String mobilenumber) {
         this.mobilenumber = mobilenumber;
     }
+
+    @Override
+    public String getClassName() {
+        return this.getClass().getName();
+    }
 }
