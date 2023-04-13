@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#eef0f3"
+    android:layout_height="170dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/liearleft"
+        android:layout_alignParentLeft="true"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:singleLine="false"
+            android:text="ETC 无押金版本" />
+
+        <TextView
+            android:id="@+id/textViewAddTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:text="全国推广 无卡设备 支持微信支付 通行95折" />
+
+        <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/black"
+            android:text="T+0 当天结算" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:id="@+id/line3"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_alignParentRight="true"
+            android:id="@+id/textViewStatus"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="审核通过" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/liearleft"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:textSize="10sp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/teal_200"
+            android:text="复制任务码" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:textSize="10sp"
+            android:background="@color/teal_200"
+            android:text="查看二维码" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:textSize="10sp"
+            android:background="@color/teal_200"
+            android:text="提交信息吧" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:textSize="10sp"
+            android:layout_marginRight="10dp"
+            android:background="@color/teal_200"
+            android:text="做单明细表" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
