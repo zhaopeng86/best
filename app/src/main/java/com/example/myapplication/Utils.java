@@ -4,20 +4,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Message;
 import android.view.View;
 import android.widget.AdapterView;
+
+import androidx.core.app.NavUtils;
 
 import com.example.myapplication.entity.BaseDataEntity;
 import com.example.myapplication.entity.OwerProjectEntity;
 import com.example.myapplication.entity.PromoteEntity;
-import com.example.myapplication.listview.ListInforAdapter;
+import com.example.myapplication.listview.ListInferAdapter;
 import com.example.myapplication.listview.OwerProjectListAdapter;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
-import java.io.Console;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -45,78 +45,61 @@ public class Utils {
         }
         return hex.toString();
     }
-    public static void parseJsonWithJsonObject(Response response, Handler handler) throws IOException {
+    public static void parseJsonWithJsonObject(Response response, UpDateView upDateView) throws IOException {
         try{
             if (response.code()==200){
-                if (handler!=null){
-                    handler.sendEmptyMessage(1);
-                }
+                if (upDateView!=null)
+                    upDateView.updateView(null);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public static void parseJsonWithListJsonObject(Response response, Context context) throws IOException {
+    public static void parseJsonWithListJsonObject(Response response,UpDateView upDateView) throws IOException {
         String responseData=response.body().string();
         try{
             if (response.code()==200){
                 JSONObject jsonArray=new JSONObject(responseData);
-                String s22 = jsonArray.getJSONObject("data").getJSONArray("list").toString();
-                Gson gson=new Gson();
-                BaseDataEntity[] userInfers = gson.fromJson(s22, PromoteEntity[].class);
-                if (userInfers==null||userInfers.length==0) return;
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                String buffer = jsonArray.getJSONObject("data").getJSONArray("list").toString();
+//                 BaseDataEntity[] userInfers;
+//                switch (upDateView.getClass().getName()){
+//                    case "ListInfoActivity":
+//                        userInfers=new Gson().fromJson(buffer, PromoteEntity[].class);
+//                        break;
+//                    case "OwnerProjectActivity":
+//                        userInfers=new Gson().fromJson(buffer, OwerProjectEntity[].class);
+//                        break;
+//                    default:
+//                        break;
+//                }
+//                if (userInfers==null||userInfers.length==0) return;
+
+                BaseDataEntity[] userInfer=null;
+
+                userInfer= new Gson().fromJson(buffer, PromoteEntity[].class);
+
+//                new Handler(Looper.getMainLooper()).post(() -> {
+//                    if (upDateView!=null)
+//                        upDateView.updateView(userInfer);
+//                });
+                BaseDataEntity[] aaaUserInfer = userInfer;
+                new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        switch (userInfers[0].getClassName()){
-                            case "PromoteEntity":
-                                ListInforAdapter listInforAdapter=new ListInforAdapter(context, (PromoteEntity[]) userInfers);
-                                ListInfoActivity listInfoActivity= (ListInfoActivity) context;
-                                listInfoActivity.listView.setAdapter(listInforAdapter);
-                                break;
-                            case "OwerProjectEntity":
-
-                                break;
-
-
-                            default:
-                                break;
-                        }
-
+                        Object a= aaaUserInfer;
+//                        upDateView.updateView(userInfer);
 
                     }
-                });
+                }).start();
+//                new Handler(Looper.getMainLooper()).post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        if (upDateView!=null)
+//                            upDateView.updateView(userInfer);
+//                    }
+//                });
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    public static void parseJsonWithProjectJsonObject(Response response, Context context) throws IOException {
-        String responseData=response.body().string();
-        try{
-            if (response.code()==200){
-                JSONObject jsonArray=new JSONObject(responseData);
-                String listData = jsonArray.getJSONObject("data").getJSONArray("list").toString();
-                Gson gson=new Gson();
-                OwerProjectEntity[] userInfers = gson.fromJson(listData, OwerProjectEntity[].class);
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                    @Override
-                    public void run() {
-                        OwerProjectListAdapter listInforAdapter=new OwerProjectListAdapter(context, userInfers);
-                        OwnerProjectActivity activity= (OwnerProjectActivity) context;
-                        activity.listView.setAdapter(listInforAdapter);
-                        activity.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                Intent intent=new Intent(activity,DetailActivity.class);
-                                intent.putExtra("data",userInfers[position].getCommitinfo());
-                                context.startActivity(intent);
-                            }
-                        });
-                    }
-                });
 
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }

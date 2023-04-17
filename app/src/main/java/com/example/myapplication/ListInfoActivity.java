@@ -1,29 +1,21 @@
 package com.example.myapplication;
 
-import android.app.IntentService;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.myapplication.entity.PromoteEntity;
-import com.example.myapplication.listview.ListInforAdapter;
+import com.example.myapplication.listview.ListInferAdapter;
 import com.example.myapplication.utils.HttpUtil;
 import com.example.myapplication.utils.UrlUtils;
 import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Response;
-public class ListInfoActivity extends AppCompatActivity {
+public class ListInfoActivity extends AppCompatActivity implements UpDateView{
     public ListView listView;
     SwipeRefreshLayout swipeRefreshLayout;
-    PromoteEntity[] userInfors;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,13 +45,17 @@ public class ListInfoActivity extends AppCompatActivity {
 
             }
         });
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent=new Intent(ListInfoActivity.this,DetailActivity.class);
-                intent.putExtra("data",userInfors[i].getTitle());
-                startActivity(intent);
-            }
+    }
+
+    @Override
+    public void updateView(Object ob) {
+        PromoteEntity[] userInfers = (PromoteEntity[]) ob;
+        ListInferAdapter listInformAdapter = new ListInferAdapter(this, (PromoteEntity[]) userInfers);
+        listView.setAdapter(listInformAdapter);
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            Intent intent=new Intent(ListInfoActivity.this,DetailActivity.class);
+            intent.putExtra("data", userInfers[position].getTitle());
+            startActivity(intent);
         });
     }
 }

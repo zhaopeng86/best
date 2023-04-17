@@ -10,20 +10,16 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.myapplication.utils.HttpUtil;
 import com.example.myapplication.utils.UrlUtils;
-
 import java.io.IOException;
-
 import okhttp3.Call;
 import okhttp3.Response;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity implements  UpDateView{
     TextView textViewInfo;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,7 +44,7 @@ public class DetailActivity extends AppCompatActivity {
                         public void onFailure(Call call, IOException e) {}
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
-                            Utils.parseJsonWithJsonObject(response,handler);
+                            Utils.parseJsonWithJsonObject(response,DetailActivity.this);
                         }
                     });
                 }else {
@@ -58,12 +54,12 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
     }
-    Handler handler=new Handler(Looper.myLooper()){
-        @Override
-        public void handleMessage(@NonNull Message msg) {
-            super.handleMessage(msg);
-            Intent intent =new Intent(DetailActivity.this, OwnerProjectActivity.class);
-            startActivity(intent);
-        }
-    };
+
+    @Override
+    public void updateView(Object ob) {
+        Intent intent =new Intent(DetailActivity.this, OwnerProjectActivity.class);
+        startActivity(intent);
+    }
+
+
 }

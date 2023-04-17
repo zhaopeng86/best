@@ -10,13 +10,15 @@ import android.widget.TextView;
 import com.example.myapplication.R;
 import com.example.myapplication.entity.PromoteEntity;
 
-public class ListInforAdapter extends BaseAdapter {
+import java.lang.ref.WeakReference;
 
-    private Context context;
+public class ListInferAdapter extends BaseAdapter {
+
+    private WeakReference <Context> context;
     private PromoteEntity[]  data;
 
-    public ListInforAdapter(Context context, PromoteEntity[]  data) {
-        this.context = context;
+    public ListInferAdapter(Context context, PromoteEntity[]  data) {
+        this.context = new WeakReference<>(context);
         this.data = data;
     }
 
@@ -39,15 +41,17 @@ public class ListInforAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder viewHolder=null;
         if (view ==null){
-            view = LayoutInflater.from(context).inflate(R.layout.listitem,viewGroup,false);
-            viewHolder=new ViewHolder();
-            viewHolder.textViewTitle = (TextView) view.findViewById(R.id.textViewTitle);
-            viewHolder.textViewDes = (TextView) view.findViewById(R.id.textViewDes);
-            viewHolder.settlement = (TextView) view.findViewById(R.id.textViewSet);
-            viewHolder.price = (TextView) view.findViewById(R.id.textViewPrice);
-            viewHolder.topPrice = (TextView) view.findViewById(R.id.textViewTopPrice);
-            viewHolder.allowance = (TextView) view.findViewById(R.id.textViewAllowance);
-            view.setTag(viewHolder);
+            if (context.get()!=null){
+                view = LayoutInflater.from(context.get()).inflate(R.layout.listitem,viewGroup,false);
+                viewHolder=new ViewHolder();
+                viewHolder.textViewTitle = (TextView) view.findViewById(R.id.textViewTitle);
+                viewHolder.textViewDes = (TextView) view.findViewById(R.id.textViewDes);
+                viewHolder.settlement = (TextView) view.findViewById(R.id.textViewSet);
+                viewHolder.price = (TextView) view.findViewById(R.id.textViewPrice);
+                viewHolder.topPrice = (TextView) view.findViewById(R.id.textViewTopPrice);
+                viewHolder.allowance = (TextView) view.findViewById(R.id.textViewAllowance);
+                view.setTag(viewHolder);
+            }
         }else {
             viewHolder= (ViewHolder) view.getTag();
         }
