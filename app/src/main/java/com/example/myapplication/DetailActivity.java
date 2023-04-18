@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.utils.HttpUtil;
+import com.example.myapplication.utils.ParseManager;
 import com.example.myapplication.utils.UrlUtils;
 import java.io.IOException;
 import okhttp3.Call;
@@ -34,17 +35,15 @@ public class DetailActivity extends AppCompatActivity implements  UpDateView{
             public void onClick(View view) {
                 EditText etUserName=findViewById(R.id.editTextTextPersonName);
                 String userName=etUserName.getText().toString();
-
                 EditText etNumber=findViewById(R.id.passwordEditText);
                 String strNumber=etNumber.getText().toString();
-                
                 if (!TextUtils.isEmpty(userName)&&!TextUtils.isEmpty(strNumber)){
                     HttpUtil.sendRequestAsynchronous(UrlUtils.createUrlInfor(userName,strNumber,str), new okhttp3.Callback() {
                         @Override
                         public void onFailure(Call call, IOException e) {}
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
-                            Utils.parseJsonWithJsonObject(response,DetailActivity.this);
+                            ParseManager.parseJsonWithJsonObject(response,DetailActivity.this);
                         }
                     });
                 }else {
@@ -60,6 +59,5 @@ public class DetailActivity extends AppCompatActivity implements  UpDateView{
         Intent intent =new Intent(DetailActivity.this, OwnerProjectActivity.class);
         startActivity(intent);
     }
-
 
 }

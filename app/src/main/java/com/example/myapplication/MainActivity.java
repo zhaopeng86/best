@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.utils.HttpUtil;
+import com.example.myapplication.utils.ParseManager;
 import com.example.myapplication.utils.UrlUtils;
 
 import java.io.IOException;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements UpDateView{
                     public void onFailure(Call call, IOException e) {}
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
-                        Utils.parseJsonWithJsonObject(response,MainActivity.this);
+                        ParseManager.parseJsonWithJsonObject(response,MainActivity.this);
                     }
                 });
             }

@@ -15,6 +15,7 @@ import com.example.myapplication.entity.OwerProjectEntity;
 import com.example.myapplication.entity.PromoteEntity;
 import com.example.myapplication.listview.OwerProjectListAdapter;
 import com.example.myapplication.utils.HttpUtil;
+import com.example.myapplication.utils.ParseManager;
 import com.example.myapplication.utils.UrlUtils;
 import java.io.IOException;
 import okhttp3.Call;
@@ -31,7 +32,7 @@ public class OwnerProjectActivity extends AppCompatActivity implements UpDateVie
             public void onFailure(Call call, IOException e) {}
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Utils.parseJsonWithListJsonObject(response,OwnerProjectActivity.this);
+                ParseManager.parseJsonWithListJsonObject(response,OwnerProjectActivity.this);
             }
         });
     }

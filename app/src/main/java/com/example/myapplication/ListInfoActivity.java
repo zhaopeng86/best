@@ -9,6 +9,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.myapplication.entity.PromoteEntity;
 import com.example.myapplication.listview.ListInferAdapter;
 import com.example.myapplication.utils.HttpUtil;
+import com.example.myapplication.utils.ParseManager;
 import com.example.myapplication.utils.UrlUtils;
 import java.io.IOException;
 import okhttp3.Call;
@@ -27,7 +28,7 @@ public class ListInfoActivity extends AppCompatActivity implements UpDateView{
             public void onFailure(Call call, IOException e) {}
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Utils.parseJsonWithListJsonObject(response,ListInfoActivity.this);
+                ParseManager.parseJsonWithListJsonObject(response,ListInfoActivity.this);
             }
         });
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -38,7 +39,7 @@ public class ListInfoActivity extends AppCompatActivity implements UpDateView{
                     public void onFailure(Call call, IOException e) {}
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
-                        Utils.parseJsonWithListJsonObject(response,ListInfoActivity.this);
+                        ParseManager.parseJsonWithListJsonObject(response,ListInfoActivity.this);
                         swipeRefreshLayout.setRefreshing(false);
                     }
                 });
