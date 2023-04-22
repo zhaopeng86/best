@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements UpDateView{
                 String passWordD5=Utils.stringToMD5(passWord);
 //                String url = "https://hd215.api.yesapi.cn/?s=App.Table.Create&model_name=Peter&data=%7B%22username%22%3A%22赵云%22%2C%22mobilenumber%22%3A%22176990030092%22%7D&app_key=CD0FD909500176B1D464830847C96DDA&sign=32EA1778D32ADE7E8E396FD4D832FFF1";
 //                String url="https://hd215.api.yesapi.cn/?s=App.Table.FreeQuery&return_data=0&model_name=Peter&logic=and&where=%5B%5B%22id%22%2C%22%3E%22%2C0%5D%5D&page=1&perpage=10&is_real_total=1&app_key=CD0FD909500176B1D464830847C96DDA&sign=5B75813E76093052136C7167BD94E5EF";
+
+
                 HttpUtil.sendRequestAsynchronous(UrlUtils.App_Register_Url, new okhttp3.Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {}
@@ -49,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements UpDateView{
 
         });
     }
-
     @Override
     public void updateView(Object ob) {
         Toast.makeText(MainActivity.this, "恭喜您已经注册成功", Toast.LENGTH_SHORT).show();

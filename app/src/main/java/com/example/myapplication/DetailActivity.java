@@ -30,6 +30,7 @@ public class DetailActivity extends AppCompatActivity implements  UpDateView{
         Intent intent = getIntent();
         String str = intent.getStringExtra("data");
         textViewInfo.setText(str+"：报备信息");
+
         findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

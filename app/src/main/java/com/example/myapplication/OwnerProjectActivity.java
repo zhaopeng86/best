@@ -27,6 +27,7 @@ public class OwnerProjectActivity extends AppCompatActivity implements UpDateVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.owerprojectmain);
         listView=findViewById(R.id.listower);
+
         HttpUtil.sendRequestAsynchronous(UrlUtils.App_Get_MyProject_list, new okhttp3.Callback() {
             @Override
             public void onFailure(Call call, IOException e) {}
