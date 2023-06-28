@@ -15,12 +15,10 @@ import com.example.myapplication.entity.OwerProjectEntity;
 public class OwerProjectListAdapter extends BaseAdapter {
     private Context context;
     private OwerProjectEntity[]  data;
-
     public  OwerProjectListAdapter(Context context,OwerProjectEntity [] data){
         this.context=context;
         this.data=data;
     }
-
     @Override
     public int getCount() {
         return data.length;
@@ -71,9 +69,7 @@ public class OwerProjectListAdapter extends BaseAdapter {
         Button OrderDetail;
     }
 
-
     class Mylistener implements View.OnClickListener{
-
         @Override
         public void onClick(View view) {
             Toast.makeText(context, "功能暂未开通，请持续关注", Toast.LENGTH_SHORT).show();

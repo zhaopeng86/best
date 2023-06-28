@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 import com.example.myapplication.UpDateView;
 import com.example.myapplication.entity.BaseDataEntity;
+import com.example.myapplication.entity.GameItemBean;
 import com.example.myapplication.entity.OwerProjectEntity;
 import com.example.myapplication.entity.PromoteEntity;
 import com.google.gson.Gson;
@@ -65,6 +66,9 @@ public class ParseManager {
                 break;
             case PACKAGE_NAME+".OwnerProjectActivity":
                 userInfers =new Gson().fromJson(jsonStr, OwerProjectEntity[].class);
+                break;
+            case PACKAGE_NAME+".makemoney.MakeMoneyActivity":
+                userInfers =new Gson().fromJson(jsonStr, GameItemBean[].class);
                 break;
             default:
                 break;

@@ -20,7 +20,7 @@ import com.example.myapplication.utils.UrlUtils;
 import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Response;
-public class OwnerProjectActivity extends AppCompatActivity implements UpDateView{
+public class OwnerProjectActivity extends BaseActivity implements UpDateView{
     public ListView listView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

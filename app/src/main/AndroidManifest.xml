@@ -13,7 +13,7 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
-            android:name=".ListInfoActivity"
+            android:name=".makemoney.MakeMoneyActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,6 +25,8 @@
         <activity android:name=".LoginActivity"/>
         <activity android:name=".DetailActivity"/>
         <activity android:name=".OwnerProjectActivity"/>
+        <activity android:name=".makemoney.GameDetailsActivity"/>
+
 
     </application>
 

@@ -20,7 +20,7 @@ import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Response;
 
-public class DetailActivity extends AppCompatActivity implements  UpDateView{
+public class DetailActivity extends BaseActivity implements  UpDateView{
     TextView textViewInfo;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

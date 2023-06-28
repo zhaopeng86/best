@@ -20,7 +20,7 @@ import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity implements UpDateView{
+public class MainActivity extends BaseActivity implements UpDateView{
     private String userName;
     private String passWord;
     @Override

@@ -14,7 +14,7 @@ import com.example.myapplication.utils.UrlUtils;
 import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Response;
-public class ListInfoActivity extends AppCompatActivity implements UpDateView{
+public class ListInfoActivity extends BaseActivity implements UpDateView{
     public ListView listView;
     SwipeRefreshLayout swipeRefreshLayout;
     @Override
@@ -31,6 +31,8 @@ public class ListInfoActivity extends AppCompatActivity implements UpDateView{
                 ParseManager.parseJsonWithListJsonObject(response,ListInfoActivity.this);
             }
         });
+
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
